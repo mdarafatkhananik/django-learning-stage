@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} My blog {% endblock %}</title>
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: #f3f4f8;
+      color: #1f2937;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #3b4fd8, #4f46e5);
+      color: #fff;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    .header-left {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px;
+      text-align: left;
+    }
+
+    .logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* ডান পাশের কোণায় বাটন রাখার স্টাইল */
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      right: 24px;
+    }
+
+    .btn-nav {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-login {
+      color: #0919f5;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: #e7fd1c;
+    }
+    .btn-login:hover {
+      background: rgb(27, 188, 252);
+    }
+
+    .btn-signup {
+      background: #1eff00;
+      color: #3b4fd8;
+      border: 1px solid #cac8ca;
+    }
+    .btn-signup:hover {
+      background: rgb(27, 188, 252);
+    }
+
+        /* অ্যালার্ট মেসেজ বক্সের ডিজাইন */
+    .messages-container {
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    /* সাকসেস মেসেজ (সবুজ রঙ) */
+    .alert-success {
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* এরর বা ডিলিট মেসেজ (লাল রঙ) */
+    .alert-error {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    /* মেসেজ কেটে দেওয়ার '×' বাটন */
+    .alert-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+      line-height: 1;
+    }
+    .alert-close:hover { opacity: 1; }
+
+
+    {% block style %}
+
+    {% endblock %}
+</style>
+</head>
+<body>
+    <header>
+        {% block header %}
+        <div class="header-left">
+            <a href="/" class="logo">My Blog</a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="auth-buttons">
+            <a href="" class="btn-nav btn-signup">{{ user.username }}</a>
+            <a href="{% url 'account_logout' %}" class="btn-nav btn-login">Log Out</a>
+        </div>
+        {% else %}   
+        <div class="auth-buttons">       
+            <a href="{% url 'account_login' %}" class="btn-nav btn-login">Log In</a>
+            <a href="{% url 'account_register' %}" class="btn-nav btn-signup">Sign Up</a>
+        </div>
+        {% endif %}
+        {% endblock %}
+    </header>
+        <main>
+        <!-- Django Messages দেখানোর অংশ -->
+        {% if messages %}
+          <div class="messages-container">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                <span>{{ message }}</span>
+                <button type="button" class="alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+</body>
+</html>

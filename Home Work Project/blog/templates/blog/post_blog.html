@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %} Show | Blog {% endblock %}
+
+{% block style %}
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4b5563;
+      margin: 12px 0 6px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #fafafa;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+      background: #fff;
+    }
+
+    textarea { min-height: 100px; resize: vertical; }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.05s;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: #4f46e5;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 22px;
+      margin-top: 16px;
+      font-size: 0.95rem;
+    }
+    .btn-primary:hover { background: #4338ca; }
+{% endblock %}
+
+{% block content %}
+    <section class="card">
+      <h2>Write a new post</h2>
+      <form method="POST">
+        {% csrf_token %}
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </section>
+{% endblock %}

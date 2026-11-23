@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block title %} {{ detail.title }} {% endblock %}
+
+{% block style %}
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .btn-back:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+      color: #111827;
+      transform: translateX(-3px);
+    }
+
+    .detail-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .title-row h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* অ্যাকশন বাটন কন্টেইনার (ডান পাশে) */
+    .action-area {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .btn-edit-inline {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-edit-inline:hover {
+      background: #4f46e5;
+      color: #fff;
+      border-color: #4f46e5;
+    }
+
+    /* Edit বাটনে ক্লিক করলে যে Update & Delete বাটন বক্স আসবে */
+    .edit-menu {
+      display: none; /* শুরুতে লুকানো থাকবে */
+      position: absolute;
+      right: 0;
+      top: 40px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      z-index: 100;
+      gap: 8px;
+    }
+
+    .btn-menu-update {
+      background: #eef2ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-menu-update:hover {
+      background: #4f46e5;
+      color: #fff;
+    }
+
+    .btn-menu-delete {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-menu-delete:hover {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .post-meta {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .detail-card p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #374151;
+      white-space: pre-line;
+    }
+
+    /* ইনলাইন এডিট ফর্মের ডিজাইন */
+    #editFormContainer {
+      display: none; /* শুরুতে লুকানো থাকবে */
+    }
+
+    #editFormContainer label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    #editFormContainer input[type="text"],
+    #editFormContainer textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: #f9fafb;
+      margin-bottom: 16px;
+      font-family: inherit;
+    }
+
+    #editFormContainer textarea { min-height: 150px; resize: vertical; }
+
+    #editFormContainer input:focus,
+    #editFormContainer textarea:focus {
+      outline: none;
+      border-color: #4f46e5;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-save {
+      background: linear-gradient(90deg, #3b4fd8, #4f46e5);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-save:hover { opacity: 0.92; }
+
+    .btn-cancel {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-cancel:hover { background: #e5e7eb; }
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'show_blog' %}" class="btn-back">← Back to All Posts</a>
+
+    <article class="detail-card">
+        <!-- ১. সাধারণ পোস্ট দেখার অংশ (View Mode) -->
+        <div id="postViewContainer">
+            <div class="title-row">
+                <h1>{{ detail.title }}</h1>
+                
+                {% if request.user == detail.user %}
+                <div class="action-area">
+                    <button type="button" class="btn-edit-inline" onclick="toggleActionMenu()">✎ Edit</button>
+                    
+                    <!-- Edit-এ ক্লিক করলে এই দুটি বাটন দেখাবে -->
+                    <div id="editMenu" class="edit-menu">
+                        <button type="button" class="btn-menu-update" onclick="showEditForm()">Update</button>
+                        
+                        <form method="POST" action="{% url 'delete_blog' detail.slug_field %}" style="margin: 0;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-menu-delete" onclick="return confirm('আপনি কি নিশ্চিতভাবে পোস্টটি ডিলিট করতে চান?');">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="post-meta">
+                Posted by <strong>{{ detail.user.username }}</strong>
+            </div>
+            
+            <p>{{ detail.description }}</p>
+        </div>
+
+        <!-- ২. একই কার্ডের ভেতরে আপডেট ফর্ম (Edit Mode) -->
+        {% if request.user == detail.user %}
+        <div id="editFormContainer">
+            <form method="POST" action="{% url 'update_blog' detail.slug_field %}">
+                {% csrf_token %}
+
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="{{ detail.title }}" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required>{{ detail.description }}</textarea>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save">Save Changes</button>
+                    <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </article>
+
+    <script>
+        // Edit বাটনে ক্লিক করলে Update ও Delete বাটন দেখাবে বা লুকাবে
+        function toggleActionMenu() {
+            const menu = document.getElementById('editMenu');
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        // Update বাটনে ক্লিক করলে পোস্টের লেখা লুকিয়ে ফর্ম দেখাবে
+        function showEditForm() {
+            document.getElementById('editMenu').style.display = 'none';
+            document.getElementById('postViewContainer').style.display = 'none';
+            document.getElementById('editFormContainer').style.display = 'block';
+        }
+
+        // Cancel বাটনে ক্লিক করলে আবার আগের পোস্ট দেখাবে
+        function cancelEdit() {
+            document.getElementById('editFormContainer').style.display = 'none';
+            document.getElementById('postViewContainer').style.display = 'block';
+        }
+    </script>
+{% endblock %}
