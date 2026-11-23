@@ -1,19 +1,20 @@
 <div align="center">
 
-<h1>✍️ My Blog — Bilingual Django Blogging Platform</h1>
+# ✍️ My Blog — Bilingual Django Blogging Platform
+
+**A sleek, secure, and modern full-stack blogging application built with Django.**  
+Designed for seamless reading and writing with inline editing, smart authentication flows, and native Bengali + English URL slug support.
 
 <p>
-  <strong>A sleek, secure, and modern full-stack blogging application built with Django.</strong><br>
-  Designed for seamless reading and writing with inline editing, smart authentication flows, and native Bengali + English URL slug support.
+  <kbd>🐍 Python 3.10+</kbd> &nbsp;
+  <kbd>🎸 Django 5.x</kbd> &nbsp;
+  <kbd>🌐 HTML5</kbd> &nbsp;
+  <kbd>🎨 CSS3</kbd> &nbsp;
+  <kbd>⚡ Vanilla JavaScript</kbd>
 </p>
 
-<p>
-  <img src="https://shields.io" alt="Python">
-  <img src="https://shields.io" alt="Django">
-  <img src="https://shields.io" alt="HTML5">
-  <img src="https://shields.io" alt="CSS3">
-  <img src="https://shields.io" alt="JavaScript">
-</p>
+</div>
+
 
 </div>
 
