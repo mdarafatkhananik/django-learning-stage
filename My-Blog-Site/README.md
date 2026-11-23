@@ -124,8 +124,10 @@ Visit **`http://127.0.0`** in your browser to explore the application.
 
 ## 📸 Screenshots
 
-<img width="1366" height="642" alt="Show Blpg" src="https://github.com/user-attachments/assets/c73b5bcb-3b2c-47e5-94dd-e2401c34c1aa" />
+<img width="1366" height="640" alt="Show Blog" src="https://github.com/user-attachments/assets/98312a2f-0836-40f0-8536-e917a20e47d8" />
+
 <img width="1366" height="639" alt="Blog Post" src="https://github.com/user-attachments/assets/086797b5-1888-4e32-be26-f2227b19d156" />
+
 <img width="1366" height="641" alt="Blog CRUD" src="https://github.com/user-attachments/assets/a899192d-3324-465d-a461-492a40980e02" />
 
 ---
